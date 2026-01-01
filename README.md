@@ -1,17 +1,8 @@
 # Heroes of Might and Magic III: Horn of the Abyss (HotA) macOS Installer
 
-This repository provides an automated, dynamic installer for [Horn of the Abyss (HotA)](https://h3hota.com/en/download), a global expansion for Heroes of Might and Magic III, specifically tailored for macOS (Apple Silicon & Intel).
+Dynamic installer for [Horn of the Abyss (HotA)](https://h3hota.com/en/download), a global expansion for Heroes of Might and Magic III, specifically tailored for macOS (Apple Silicon & Intel).
 
-## 🚀 Features
-
-*   **Dynamic Version Detection**: Automatically scrapes the official HotA website to find the latest version (no hardcoded versions!).
-*   **Automated Dependency Management**: Checks for and installs:
-    *   **Rosetta 2** (for Apple Silicon Macs).
-    *   **Wine/Wineskin** (via Homebrew) to run the Windows executable.
-*   **Smart Updates**: Compares your locally installed version with the latest web version and only runs the updater if necessary.
-*   **One-Click Launch**: Functions as both an installer/updater and a game launcher.
-
-## 📋 Prerequisites
+## 📋 Setup
 
 Before running the script, ensure you have:
 
@@ -41,7 +32,3 @@ Before running the script, ensure you have:
     ```bash
     ./install.sh
     ```
-
-## 📄 License
-
-This project is for educational and utility purposes. *Heroes of Might and Magic III* is a trademark of Ubisoft. *Horn of the Abyss* is a fan-made expansion.
