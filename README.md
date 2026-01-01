@@ -2,7 +2,7 @@
 
 Dynamic installer for [Horn of the Abyss (HotA)](https://h3hota.com/en/download), a global expansion for Heroes of Might and Magic III, specifically tailored for macOS (Apple Silicon & Intel).
 
-## 📋 Setup
+## Setup
 
 Before running the script, ensure you have:
 
@@ -15,7 +15,7 @@ Before running the script, ensure you have:
 
 > **Note**: You must own the original *Heroes of Might and Magic III* game files for HotA to work fully, though the HotA installer itself is a standalone package that often requires the base game data.
 
-## 🛠 Installation & Usage
+## Installation & Usage
 
 1.  **Clone the repository**:
     ```bash
