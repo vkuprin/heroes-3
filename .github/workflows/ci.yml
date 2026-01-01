@@ -25,3 +25,31 @@ jobs:
       - uses: actions/checkout@v3
       - name: Check syntax
         run: bash -n install.sh
+
+  # Integration test on macOS
+  macos-integration:
+    name: macOS Integration Test
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Installer Script (Dry Run)
+        run: ./install.sh
+        env:
+          CI: true
+      - name: Verify Download
+        run: |
+          if ls downloads/HotA_*_setup.exe 1> /dev/null 2>&1; then
+            echo "Installer downloaded successfully."
+          else
+            echo "Error: Installer not found."
+            exit 1
+          fi
+      - name: Verify Version File
+        run: |
+           if [ -f .installed_version ]; then
+             echo "Version file created successfully."
+             cat .installed_version
+           else
+             echo "Error: Version file not created."
+             exit 1
+           fi

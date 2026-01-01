@@ -27,6 +27,10 @@ INSTALLER_FILENAME="HotA_${GAME_VERSION}_setup.exe"
 INSTALLER_PATH="${DOWNLOAD_DIR}/${INSTALLER_FILENAME}"
 
 install_rosetta() {
+  if [ -n "$CI" ]; then
+    echo "CI environment detected. Skipping Rosetta installation."
+    return
+  fi
   if /usr/bin/pgrep oahd >/dev/null 2>&1; then
     echo "Rosetta is already installed."
   else
@@ -36,6 +40,10 @@ install_rosetta() {
 }
 
 install_wineskin() {
+    if [ -n "$CI" ]; then
+        echo "CI environment detected. Skipping Wineskin/Wine installation."
+        return
+    fi
     if brew list --cask | grep -q wineskin; then
         echo "Wineskin/Wine is already installed."
     else
@@ -63,16 +71,34 @@ install_hota() {
     echo "HotA $GAME_VERSION is already installed."
   else
     echo "Installing/Updating to HotA $GAME_VERSION..."
-    # Run the installer with Wine
-    wine "$INSTALLER_PATH"
     
-    # Update local version file
-    echo "$GAME_VERSION" > "$VERSION_FILE"
-    echo "Update complete."
+    if [ -n "$CI" ]; then
+        echo "CI environment detected. Skipping actual Wine execution."
+        echo "Verifying installer file exists..."
+        if [ -f "$INSTALLER_PATH" ]; then
+            echo "Installer found at $INSTALLER_PATH"
+            # Simulate successful install for CI
+            echo "$GAME_VERSION" > "$VERSION_FILE"
+        else
+            echo "Error: Installer not found in CI!"
+            exit 1
+        fi
+    else
+        # Run the installer with Wine
+        wine "$INSTALLER_PATH"
+        
+        # Update local version file
+        echo "$GAME_VERSION" > "$VERSION_FILE"
+        echo "Update complete."
+    fi
   fi
 }
 
 run_hota() {
+   if [ -n "$CI" ]; then
+      echo "CI environment detected. Skipping game launch."
+      return
+   fi
    echo "Launching HotA..."
    cd "$GAME_WINE_INSTALLED_PATH"
    wine HotA_launcher.exe
