@@ -1,4 +1,4 @@
-# Heroes of Might and Magic III: Horn of the Abyss (HotA) macOS Installer
+# 🗡️ Heroes of Might and Magic III: Horn of the Abyss (HotA) macOS Installer
 
 Dynamic installer for [Horn of the Abyss (HotA)](https://h3hota.com/en/download), a global expansion for Heroes of Might and Magic III, specifically tailored for macOS (Apple Silicon & Intel).
 
